@@ -1,9 +1,8 @@
 {
-  "name": "webpack-babel-boilerplate",
+  "name": "multimodal-multitasking-experiment",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Corey Howell",
-  "license": "MIT",
+  "author": "Erik van der Plas",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
