@@ -48,7 +48,10 @@ const config = {
         modules: false,
         timings: false,
         version: false,
-    }
+    },
+    allowedHosts: [
+      '0b95ef0d.ngrok.io'
+    ]
   },
   watch: false,
   devtool: 'source-map',

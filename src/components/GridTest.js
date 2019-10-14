@@ -33,7 +33,9 @@ export default function GridTest() {
     secondGridCanvas.draw();
   };
 
-  container.refresh();
+  container.start = () => {
+    container.refresh()
+  };
 
   return container;
 }

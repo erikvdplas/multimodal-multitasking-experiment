@@ -1,16 +1,16 @@
 import Container from "./Container";
 import Heading from "./Heading";
-import { styled, ref, OBSERVABLE_TIME, REST_TIME } from '../helpers';
+import { styled, OBSERVABLE_TIME, REST_TIME } from '../helpers';
 import _ from 'lodash';
 
 const VOWEL_OPTIONS = ['A', 'E', 'I', 'O'];
+const synth = window.speechSynthesis;
+
 const RESPONSE_VOWEL = VOWEL_OPTIONS[0];
 
-export default function VisualVowel() {
-  let label;
-
+export default function AuditiveVowel() {
   const container = Container([
-    ref(styled(Heading(''), { fontSize: '5em' }), ref => label = ref)
+    styled(Heading('🔈'), { fontSize: '5em' })
   ]);
 
   container.classList = ['vowel-container'];
@@ -18,10 +18,13 @@ export default function VisualVowel() {
   container.refresh = () => {
     container.responded = false;
     const vowel = _.sample(VOWEL_OPTIONS);
-    label.innerText = vowel;
+    const utterance = new SpeechSynthesisUtterance(vowel.toLowerCase());
+    utterance.lang = 'nl';
+    utterance.rate = 0.5;
+    synth.speak(utterance);
 
     setTimeout(() => {
-      label.innerText = '';
+      synth.cancel();
 
       setTimeout(() => {
         if (!container.paused) {

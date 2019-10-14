@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 export const COLORS = ['red', 'blue', 'green', 'yellow'];
 
-export const GRID_DIMENSION = 4;
+export const GRID_DIMENSION = 3;
 const GRID_SIZE = 200;
 const BLOCK_SIZE = GRID_SIZE / GRID_DIMENSION;
 
@@ -42,7 +42,6 @@ function GridCanvas(grid, rotation) {
 
   canvas.grid = grid;
   canvas.rotation = rotation || 0;
-  canvas.draw();
 
   return canvas;
 }

@@ -8,5 +8,5 @@ export const styled = (component, style) => {
 
 export const ref = (component, handler) => handler(component);
 
-export const OBSERVABLE_TIME = 800;
-export const REST_TIME = 200;
+export const OBSERVABLE_TIME = 1200;
+export const REST_TIME = 400;
