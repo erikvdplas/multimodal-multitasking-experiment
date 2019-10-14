@@ -1,6 +1,29 @@
+:root {
+    --spacing-unit: 50px;
+}
+
 body {
+    margin: var(--spacing-unit);
     min-height: 100vh;
-    background-color: aquamarine;
+    font-family: 'Comic Sans MS';
+}
+
+.grid-container {
+    display: flex;
+}
+
+.grid-container canvas {
+    margin: 0 var(--spacing-unit);
+    border: 5px solid black;
+}
+
+.vowel-container {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main {
