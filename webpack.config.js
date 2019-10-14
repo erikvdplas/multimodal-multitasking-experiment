@@ -5,7 +5,7 @@ require("@babel/register");
 const config = {
   entry: ['@babel/polyfill','./src/index.js'],
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/docs',
     filename: 'bundle.js'
   },
   module: {
@@ -33,7 +33,7 @@ const config = {
     ]
   },
   devServer: {
-    contentBase: __dirname + '/public',
+    contentBase: __dirname + '/docs',
     compress: true,
     port: 9000,
     open: true,
