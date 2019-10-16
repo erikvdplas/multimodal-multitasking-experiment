@@ -23,7 +23,7 @@ const parameters = (() => {
     return result;
 })();
 
-const { type } = parameters;
+const { type, mainCount, isPractice } = parameters;
 
 if (type) {
     const start = new Date();
@@ -68,7 +68,7 @@ if (type) {
     document.addEventListener('keydown', event => {
         event.preventDefault();
 
-        if (mainAnswers.length === 50) {
+        if (mainAnswers.length === parseInt(mainCount)) {
             if (!finishedExperiment) {
                 finishedExperiment = true;
 
@@ -76,13 +76,15 @@ if (type) {
                     secondaryExperiment.paused = true;
                 }
 
-                let csv = '';
-                csv += mainAnswers.length + ', ' + mainAnswers.filter(a => a).length + '\n';
-                csv += secondaryRequiredAnswers.length + ', ' + secondaryRequiredAnswers.filter(a => a).length + '\n';
-                csv += secondaryOmittedAnswers.length + ', ' + secondaryOmittedAnswers.filter(a => a).length + '\n';
-                csv += Math.round((new Date()).getTime() - start.getTime()).toString() + ', ' + type;
+                if (isPractice !== 'true') {
+                    let csv = '';
+                    csv += mainAnswers.length + ', ' + mainAnswers.filter(a => a).length + '\n';
+                    csv += secondaryRequiredAnswers.length + ', ' + secondaryRequiredAnswers.filter(a => a).length + '\n';
+                    csv += secondaryOmittedAnswers.length + ', ' + secondaryOmittedAnswers.filter(a => a).length + '\n';
+                    csv += Math.round((new Date()).getTime() - start.getTime()).toString() + ', ' + type;
 
-                fileDownload(csv, 'result.csv');
+                    fileDownload(csv, 'result.csv');
+                }
 
                 setTimeout(() => {
                     document.location = document.location.pathname;
@@ -116,10 +118,13 @@ if (type) {
     };
 } else {
     Container([
-        Heading('Choose experiment'),
-        Link(document.location + '?type=A', 'Experiment A'),
-        Link(document.location + '?type=B', 'Experiment B'),
-        Link(document.location + '?type=C', 'Experiment C'),
+        Heading('Kies experiment'),
+        Link(document.location + '?type=A&isPractice=true&mainCount=5', 'Oefenexperiment A'),
+        Link(document.location + '?type=B&isPractice=true&mainCount=5', 'Oefenexperiment B'),
+        Link(document.location + '?type=C&isPractice=true&mainCount=5', 'Oefenexperiment C'),
+        Link(document.location + '?type=A&mainCount=30', 'Experiment A'),
+        Link(document.location + '?type=B&mainCount=30', 'Experiment B'),
+        Link(document.location + '?type=C&mainCount=30', 'Experiment C'),
         styled(Heading('Instructies', 2), { marginTop: '100px' }),
         Paragraph('Druk op de linkerpijltoets als de blokfiguren geroteerd overeenkomen.'),
         Paragraph('Druk op de rechterpijltoets als dat niet zo is.'),
