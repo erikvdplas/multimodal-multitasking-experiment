@@ -85,7 +85,7 @@ if (type) {
                 fileDownload(csv, 'result.csv');
 
                 setTimeout(() => {
-                    document.location = '/'
+                    document.location = document.location.pathname;
                 }, 200);
             }
         } else {
